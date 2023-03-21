@@ -22,7 +22,8 @@ class Explorer(AbstractAgent):
         
         # Specific initialization for the rescuer
         self.resc = resc           # reference to the rescuer agent
-        self.rtime = self.TLIM     # remaining time to explore     
+        self.rtime = self.TLIM     # remaining time to explore  
+        self.local = list()  
 
    
     
@@ -37,7 +38,7 @@ class Explorer(AbstractAgent):
             print(f"{self.NAME} I believe I've remaining time of {self.rtime:.1f}")
             self.resc.go_save_victims([],[])
             return False
-        
+
         dx = random.choice([-1, 0, 1])
 
         if dx == 0:
@@ -47,6 +48,8 @@ class Explorer(AbstractAgent):
         
         # Moves the body to another position
         result = self.body.walk(dx, dy)
+
+        print(result)
 
         # Update remaining time
         if dx != 0 and dy != 0:
